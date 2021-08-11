@@ -5,7 +5,7 @@ import './quiz assets/question.dart';
 
 class Quiz extends StatelessWidget {
   List questions;
-  final VoidCallback increment;
+  final Function increment;
   int index = 0;
 
   Quiz(this.questions, this.increment, this.index);
@@ -15,7 +15,8 @@ class Quiz extends StatelessWidget {
     return Column(
       children: [
         Question(questions[index]['question']),
-        ...questions[index]['answers'].map((ans)=>Answer(ans['text'], increment)),
+        ...questions[index]['answers']
+        .map((ans) => Answer(ans['text'], () => increment(ans['score']))),
       ],
     );
   }

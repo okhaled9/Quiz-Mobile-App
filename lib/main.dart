@@ -41,11 +41,14 @@ class MyAppState extends State<MyApp> {
     },
   ];
 
-  int i = 0;
+  int index = 0;
+  int totalScore = 0;
 
-  void increment() {
+  void increment(int score) {
+    totalScore += score;
+
     setState(() {
-      i++;
+      index++;
     });
   }
 
@@ -63,7 +66,9 @@ class MyAppState extends State<MyApp> {
             ),
           ),
         ),
-        body: i < questions.length ? Quiz(questions, increment, i) : Result(),
+        body: index < questions.length
+            ? Quiz(questions, increment, index)
+            : Result(totalScore),
       ),
     );
   }
