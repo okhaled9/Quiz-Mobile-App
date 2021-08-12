@@ -20,8 +20,8 @@ class MyAppState extends State<MyApp> {
       'question': 'Favorite Color',
       'answers': [
         {'text': 'Red', 'score': 10},
-        {'text': 'purple', 'score': 10},
-        {'text': 'Black', 'score': 1},
+        {'text': 'Purple', 'score': 4},
+        {'text': 'Black', 'score': 6},
         {'text': 'Blue', 'score': 5}
       ]
     },
@@ -29,7 +29,7 @@ class MyAppState extends State<MyApp> {
       'question': 'Favorite Drink',
       'answers': [
         {'text': 'Cola', 'score': 10},
-        {'text': 'Sprite', 'score': 1},
+        {'text': 'Sprite', 'score': 5},
       ]
     },
     {
@@ -48,9 +48,15 @@ class MyAppState extends State<MyApp> {
 
   void increment(int score) {
     totalScore += score;
-
     setState(() {
       index++;
+    });
+  }
+
+  void reset() {
+    setState(() {
+      index = 0;
+      totalScore = 0;
     });
   }
 
@@ -70,7 +76,7 @@ class MyAppState extends State<MyApp> {
         ),
         body: index < questions.length
             ? Quiz(questions, increment, index)
-            : Result(totalScore, questions.length),
+            : Result(totalScore, questions.length, reset),
       ),
     );
   }

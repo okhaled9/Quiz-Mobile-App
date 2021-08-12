@@ -1,11 +1,29 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
   final String _text;
   final VoidCallback increment;
-  final buttonStyle = ElevatedButton.styleFrom(primary: Colors.blue);
+  var buttonStyle = ElevatedButton.styleFrom();
 
-  Answer(this._text,this.increment);
+  Answer(this._text, this.increment) {
+    int colorsIndex = Random().nextInt(colors.length);
+    buttonStyle = ElevatedButton.styleFrom(primary: colors[colorsIndex]);
+  }
+
+  List colors = [
+    Colors.red,
+    Colors.blue,
+    Colors.orange,
+    Colors.purpleAccent,
+    Colors.teal,
+    Colors.green,
+    Colors.amber,
+    Colors.cyan,
+    Colors.lime,
+    Colors.indigoAccent,
+  ];
 
   @override
   Widget build(BuildContext context) {
